@@ -1,12 +1,9 @@
 @description('Name of the Azure Static Web App.')
 param staticSites_blog_name string = 'blog'
 
-@description('Azure region for the Static Web App.')
-param location string = 'East Asia'
-
-resource staticSite 'Microsoft.Web/staticSites@2024-11-01' = {
-  name: staticSites_blog_name
-  location: location
+resource staticSite 'Microsoft.Web/staticSites@2025-03-01' = {
+  name: 'blog'
+  location: 'East Asia'
   sku: {
     name: 'Free'
     tier: 'Free'

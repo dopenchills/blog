@@ -21,13 +21,5 @@ resource staticSite 'Microsoft.Web/staticSites@2024-11-01' = {
   }
 }
 
-resource basicAuth 'Microsoft.Web/staticSites/basicAuth@2024-11-01' = {
-  parent: staticSite
-  name: 'default'
-  properties: {
-    applicableEnvironmentsMode: 'SpecifiedEnvironments'
-  }
-}
-
 output staticSiteId string = staticSite.id
 output defaultHostname string = staticSite.properties.defaultHostname

@@ -42,6 +42,7 @@ const recentPosts = Object.values(postModules)
 			<main class="content">
 				<slot />
 			</main>
+			<div class="sidebar-spacer" aria-hidden="true"></div>
 			<aside class="sidebar">
 				<Profile />
 				{showRecentPosts && (
@@ -63,11 +64,13 @@ const recentPosts = Object.values(postModules)
 	.layout {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: auto auto 2rem auto;
 		grid-template-areas:
 			'header'
 			'content'
+			'spacer'
 			'sidebar';
-		gap: 1rem 2rem;
+		row-gap: 1rem;
 		margin-top: 0.5rem;
 		margin-bottom: 2rem;
 	}
@@ -80,6 +83,10 @@ const recentPosts = Object.values(postModules)
 		grid-area: content;
 	}
 
+	.sidebar-spacer {
+		grid-area: spacer;
+	}
+
 	.sidebar {
 		grid-area: sidebar;
 
@@ -90,9 +97,15 @@ const recentPosts = Object.values(postModules)
 	@media (min-width: 64rem) {
 		.layout {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 42rem) 16rem minmax(0, 1fr);
+			grid-template-rows: auto auto;
 			grid-template-areas:
 				'. header . .'
 				'. content sidebar .';
+			gap: 1rem 2rem;
+		}
+
+		.sidebar-spacer {
+			display: none;
 		}
 	}
 </style>

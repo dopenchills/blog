@@ -1,6 +1,13 @@
 ---
 import Layout from './Layout.astro';
 
+interface Props {
+	frontmatter: {
+		title: string;
+		pubDate: string;
+	};
+}
+
 const { frontmatter } = Astro.props;
 ---
 

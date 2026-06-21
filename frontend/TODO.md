@@ -9,7 +9,6 @@
 
 ブログの機能追加
 - RSSの導入
-- Buy me a coffee機能の追加
 
 開発生産性向上
 - Content Collectionの導入

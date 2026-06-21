@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import BuyMeACoffee from './components/BuyMeACoffee.astro';
 
 interface Props {
 	frontmatter: {
@@ -15,6 +16,10 @@ const { frontmatter } = Astro.props;
 	<article class="post-content">
 		<h1>{frontmatter.title}</h1>
 		<slot />
+		<hr />
+		<div class="support-link">
+			<BuyMeACoffee />
+		</div>
 	</article>
 </Layout>
 
@@ -32,5 +37,9 @@ const { frontmatter } = Astro.props;
 
 	.post-content p {
 		margin-bottom: 1rem;
+	}
+
+	.post-content .support-link {
+		margin-top: 1rem;
 	}
 </style>

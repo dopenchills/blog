@@ -12,8 +12,25 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title} showRecentPosts>
-	<article>
+	<article class="post-content">
 		<h1>{frontmatter.title}</h1>
 		<slot />
 	</article>
 </Layout>
+
+<style is:global>
+	.post-content h1,
+	.post-content h2,
+	.post-content h3 {
+		margin-bottom: 0.5rem;
+	}
+
+	.post-content h2,
+	.post-content h3 {
+		margin-top: 1.5rem;
+	}
+
+	.post-content p {
+		margin-bottom: 1rem;
+	}
+</style>

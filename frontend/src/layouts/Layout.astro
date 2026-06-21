@@ -1,4 +1,5 @@
 ---
+import Head from './components/Head.astro';
 import Header from './components/Header.astro';
 import Sidebar from './components/Sidebar.astro';
 
@@ -12,15 +13,7 @@ const { title = 'Blog', showRecentPosts = false } = Astro.props;
 
 <!doctype html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="stylesheet" href="/styles/global.css">
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
+	<Head title={title} />
 	<body>
 		<div class="layout">
 			<div class="site-header">

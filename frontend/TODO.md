@@ -12,8 +12,6 @@
 - Buy me a coffee機能の追加
 
 開発生産性向上
-- MCPサーバーの導入
-  - https://docs.astro.build/en/guides/build-with-ai/
 - Content Collectionの導入
 - Renovateなどの依存更新の仕組みを導入
 

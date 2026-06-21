@@ -1,7 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+import icon from '../../assets/icon.png';
+
 const props = Astro.props;
 ---
 
 <header {...props}>
-	<a href="/">Blog</a>
+	<a href="/">
+		<Image src={icon} alt="Blog" width={48} />
+	</a>
 </header>

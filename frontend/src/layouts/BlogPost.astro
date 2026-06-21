@@ -1,20 +1,12 @@
 ---
+import Layout from './Layout.astro';
+
 const { frontmatter } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{frontmatter.title}</title>
-	</head>
-	<body>
-		<main>
-			<a href="/">トップへ戻る</a>
-			<h1>{frontmatter.title}</h1>
-			<slot />
-		</main>
-	</body>
-</html>
+<Layout title={frontmatter.title} showRecentPosts>
+	<article>
+		<h1>{frontmatter.title}</h1>
+		<slot />
+	</article>
+</Layout>

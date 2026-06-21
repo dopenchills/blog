@@ -1,9 +1,26 @@
 ---
+import Header from './components/Header.astro';
+import Profile from './components/Profile.astro';
+
 interface Props {
 	title?: string;
+	showRecentPosts?: boolean;
 }
 
-const { title = 'Blog' } = Astro.props;
+const { title = 'Blog', showRecentPosts = false } = Astro.props;
+
+type BlogPost = {
+	url: string;
+	frontmatter: {
+		title: string;
+		pubDate: string;
+	};
+};
+
+const postModules = import.meta.glob<BlogPost>('../pages/blog/*.md', { eager: true });
+const recentPosts = Object.values(postModules)
+	.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate))
+	.slice(0, 3);
 ---
 
 <!doctype html>
@@ -17,6 +34,57 @@ const { title = 'Blog' } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="layout">
+			<Header class="site-header" />
+			<main class="content">
+				<slot />
+			</main>
+			<aside class="sidebar">
+				<Profile />
+				{showRecentPosts && (
+					<section>
+						<h2>最近の記事</h2>
+						<ul>
+							{recentPosts.map((post) => (
+								<li><a href={post.url}>{post.frontmatter.title}</a></li>
+							))}
+						</ul>
+					</section>
+				)}
+			</aside>
+		</div>
 	</body>
 </html>
+
+<style>
+	.layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-areas:
+			'header'
+			'content'
+			'sidebar';
+	}
+
+	.site-header {
+		grid-area: header;
+	}
+
+	.content {
+		grid-area: content;
+	}
+
+	.sidebar {
+		grid-area: sidebar;
+	}
+
+	@media (min-width: 64rem) {
+		.layout {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 42rem) 16rem minmax(0, 1fr);
+			grid-template-areas:
+				'. header . .'
+				'. content sidebar .';
+			column-gap: 2rem;
+		}
+	}
+</style>

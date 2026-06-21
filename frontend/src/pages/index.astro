@@ -16,12 +16,10 @@ const posts = Object.values(postModules).sort(
 ---
 
 <Layout title="最新の投稿">
-	<main>
-		<h1>最新の投稿</h1>
-		<ul>
-			{posts.map((post) => (
-				<li><a href={post.url}>{post.frontmatter.title}</a></li>
-			))}
-		</ul>
-	</main>
+	<h1>最新の投稿</h1>
+	<ul>
+		{posts.map((post) => (
+			<li><a href={post.url}>{post.frontmatter.title}</a></li>
+		))}
+	</ul>
 </Layout>

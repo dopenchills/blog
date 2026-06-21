@@ -1,38 +1,17 @@
 ---
 import Profile from './Profile.astro';
+import RecentPosts from './RecentPosts.astro';
 
 interface Props {
 	showRecentPosts?: boolean;
 }
 
 const { showRecentPosts = false } = Astro.props;
-
-type BlogPost = {
-	url: string;
-	frontmatter: {
-		title: string;
-		pubDate: string;
-	};
-};
-
-const postModules = import.meta.glob<BlogPost>('../../pages/blog/*.md', { eager: true });
-const recentPosts = Object.values(postModules)
-	.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate))
-	.slice(0, 3);
 ---
 
 <aside>
 	<Profile />
-	{showRecentPosts && (
-		<section>
-			<h2>最近の記事</h2>
-			<ul>
-				{recentPosts.map((post) => (
-					<li><a href={post.url}>{post.frontmatter.title}</a></li>
-				))}
-			</ul>
-		</section>
-	)}
+	{showRecentPosts && <RecentPosts />}
 </aside>
 
 <style>

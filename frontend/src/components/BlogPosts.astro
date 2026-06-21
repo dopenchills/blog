@@ -1,0 +1,17 @@
+---
+import { getBlogPosts, type BlogPost } from './blogPostHelper';
+
+interface Props {
+	limit?: number
+}
+
+const { limit } = Astro.props;
+
+const posts = getBlogPosts(limit)
+---
+
+<ul>
+	{posts.map((post) => (
+		<li><a href={post.url}>{post.frontmatter.title}</a></li>
+	))}
+</ul>

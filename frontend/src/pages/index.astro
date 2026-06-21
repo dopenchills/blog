@@ -1,17 +1,11 @@
 ---
+import BlogPosts from '../components/BlogPosts.astro';
 import Layout from '../layouts/Layout.astro';
-import { getAllPosts } from '../helpers/blogPosts';
-
-const posts = getAllPosts();
 ---
 
 <Layout title="最新の投稿">
 	<h1>最新の投稿</h1>
-	<ul>
-		{posts.map((post) => (
-			<li><a href={post.url}>{post.frontmatter.title}</a></li>
-		))}
-	</ul>
+	<BlogPosts />
 </Layout>
 
 <style>

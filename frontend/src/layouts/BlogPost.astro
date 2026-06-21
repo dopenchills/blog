@@ -1,9 +1,5 @@
 ---
-interface Props {
-	title?: string;
-}
-
-const { title = 'Blog' } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
@@ -11,12 +7,14 @@ const { title = 'Blog' } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{frontmatter.title}</title>
 	</head>
 	<body>
-		<slot />
+		<main>
+			<a href="/">トップへ戻る</a>
+			<h1>{frontmatter.title}</h1>
+			<slot />
+		</main>
 	</body>
 </html>

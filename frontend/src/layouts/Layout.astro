@@ -35,7 +35,9 @@ const recentPosts = Object.values(postModules)
 	</head>
 	<body>
 		<div class="layout">
-			<Header class="site-header" />
+			<div class="site-header">
+				<Header />
+			</div>
 			<main class="content">
 				<slot />
 			</main>

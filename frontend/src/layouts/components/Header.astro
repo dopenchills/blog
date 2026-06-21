@@ -1,16 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import icon from '../../assets/icon.png';
-
-interface Props {
-	class?: string;
-}
-
-const { class: className } = Astro.props;
 ---
 
-<header class={className}>
+<header>
 	<a href="/">
-		<Image src={icon} alt="Blog" width={48} />
+		<Image src={icon} alt="Blog" width={48} loading="eager" fetchpriority="high" />
 	</a>
 </header>

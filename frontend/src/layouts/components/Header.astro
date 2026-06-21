@@ -2,10 +2,14 @@
 import { Image } from 'astro:assets';
 import icon from '../../assets/icon.png';
 
-const props = Astro.props;
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<header {...props}>
+<header class={className}>
 	<a href="/">
 		<Image src={icon} alt="Blog" width={48} />
 	</a>

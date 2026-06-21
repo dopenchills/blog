@@ -1,16 +1,7 @@
 ---
-type BlogPost = {
-	url: string;
-	frontmatter: {
-		title: string;
-		pubDate: string;
-	};
-};
+import { getRecentPosts } from '../../../lib/blogPosts';
 
-const postModules = import.meta.glob<BlogPost>('../../../pages/blog/*.md', { eager: true });
-const recentPosts = Object.values(postModules)
-	.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate))
-	.slice(0, 3);
+const recentPosts = getRecentPosts();
 ---
 
 <section>

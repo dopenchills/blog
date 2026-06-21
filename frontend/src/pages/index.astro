@@ -1,18 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getAllPosts } from '../lib/blogPosts';
 
-type BlogPost = {
-	url: string;
-	frontmatter: {
-		title: string;
-		pubDate: string;
-	};
-};
-
-const postModules = import.meta.glob<BlogPost>('./blog/*.md', { eager: true });
-const posts = Object.values(postModules).sort(
-	(a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate),
-);
+const posts = getAllPosts();
 ---
 
 <Layout title="最新の投稿">

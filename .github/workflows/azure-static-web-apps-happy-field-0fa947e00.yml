@@ -8,13 +8,15 @@ on:
       - frontend/**
       - .github/workflows/azure-static-web-apps-happy-field-0fa947e00.yml
 
+concurrency:
+  group: azure-static-web-apps-main
+  cancel-in-progress: true
+
 jobs:
-  build_and_deploy_job:
+  build:
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
     permissions:
-       id-token: write
-       contents: read
+      contents: read
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
@@ -36,6 +38,25 @@ jobs:
       - name: Build
         run: pnpm build
         working-directory: frontend
+      - name: Upload build output
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: frontend-dist
+          path: frontend/dist
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Download build output
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: frontend-dist
+          path: frontend/dist
       - name: Get Id Token
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         id: idtoken

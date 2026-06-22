@@ -11,7 +11,6 @@
 - Renovateなどの依存更新の仕組みを導入
 
 SEO / 分析の実験
-- Googleの検索エンジンへの登録
 - Google Analyticsの導入
 - Azure Application Insightsの導入
 

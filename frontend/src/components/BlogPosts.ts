@@ -1,19 +1,14 @@
-export type BlogPost = {
-	url: string;
-	frontmatter: {
-		title: string;
-		pubDate: string;
-	};
-};
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-export function getBlogPosts(limit?: number): BlogPost[] {
-	const postModules = import.meta.glob<BlogPost>('../pages/blog/*.md', { eager: true });
-	const allPosts = Object.values(postModules).sort(
-		(a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate),
+export type BlogPost = CollectionEntry<'blog'>;
+
+export async function getBlogPosts(limit?: number): Promise<BlogPost[]> {
+	const allPosts = (await getCollection('blog')).sort(
+		(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 	);
 
 	if (limit === undefined) {
-		return allPosts
+		return allPosts;
 	}
 
 	return allPosts.slice(0, limit);

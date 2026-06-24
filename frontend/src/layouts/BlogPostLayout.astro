@@ -3,18 +3,17 @@ import Layout from './Layout.astro';
 import BuyMeACoffee from './components/BlogPost/BuyMeACoffee.astro';
 
 interface Props {
-	frontmatter: {
-		title: string;
-		pubDate: string;
-	};
+	title: string;
+	pubDate: Date;
+	updatedDate?: Date;
 }
 
-const { frontmatter } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<Layout title={frontmatter.title} showRecentPosts>
+<Layout title={title} showRecentPosts>
 	<article class="post-content">
-		<h1>{frontmatter.title}</h1>
+		<h1>{title}</h1>
 		<slot />
 		<div class="support-link">
 			<BuyMeACoffee />

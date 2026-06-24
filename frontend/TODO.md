@@ -4,7 +4,6 @@
 - フォントについて詰める
 
 開発生産性向上
-- Content Collectionの導入
 - Renovateなどの依存更新の仕組みを導入
 
 SEO / 分析の実験

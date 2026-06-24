@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/BlogPostLayout.astro
 title: モノレポのすすめ
 pubDate: '2026-06-23'
 tags: ["software"]

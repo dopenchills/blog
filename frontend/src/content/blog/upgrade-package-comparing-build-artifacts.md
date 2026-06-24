@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/BlogPostLayout.astro
 title: ビルド成果物を比較して、パッケージアップグレードを安全に進める
 pubDate: '2026-06-21'
 tags: ["software", "frontend"]

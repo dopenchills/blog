@@ -1,13 +1,17 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
 
-// TODO: Use content collection
 export async function GET(context) {
+  const posts = await getCollection('blog');
+
   return rss({
     title: 'Blog - Ryo Sakaguchi',
     description: 'Blog - Ryo Sakaguchi',
     site: context.site,
-    items: await pagesGlobToRssItems(
-      import.meta.glob('./blog/*.{md,mdx}'),
-    ),
+    items: posts.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.pubDate,
+      link: `/blog/${post.id}/`,
+    })),
   });
 }

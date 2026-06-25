@@ -2,8 +2,8 @@
   // #region Formatter
   "editor.formatOnSave": true,
   "prettier.requireConfig": true,
-  "prettier.configPath": "./frontend/.prettierrc.json",
-  "prettier.ignorePath": "./frontend/.prettierignore",
+  "prettier.configPath": "./.prettierrc.json",
+  "prettier.ignorePath": "./.prettierignore",
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

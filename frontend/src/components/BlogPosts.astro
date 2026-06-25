@@ -10,8 +10,11 @@ const { limit } = Astro.props;
 const posts = await getBlogPosts(limit);
 ---
 
-<ul>
+<div style="display: grid; row-gap: 1rem;">
 	{posts.map((post) => (
-		<li><a href={`/blog/${post.id}`}>{post.data.title}</a></li>
+		<div>
+			<a href={`/blog/${post.id}`}>{post.data.title}</a>
+			<div>{new Intl.DateTimeFormat('ja-JP', { dateStyle: 'long' }).format(post.data.pubDate)}</div>
+		</div>
 	))}
-</ul>
+</div>

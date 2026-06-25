@@ -6,7 +6,7 @@
       "request": "launch",
       "type": "node-terminal",
       "command": "./node_modules/.bin/astro dev",
-      "cwd": "${workspaceFolder}/frontend",
+      "cwd": "${workspaceFolder}",
       "serverReadyAction":{
         "action": "openExternally",
         "pattern": "Local    http://localhost:([0-9]+)",

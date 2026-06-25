@@ -1,23 +1,23 @@
 ---
-import Profile from './Profile.astro';
-import RecentPosts from './RecentPosts.astro';
+import Profile from "./Profile.astro";
+import RecentPosts from "./RecentPosts.astro";
 
 interface Props {
-	showRecentPosts?: boolean;
+  showRecentPosts?: boolean;
 }
 
 const { showRecentPosts = false } = Astro.props;
 ---
 
 <aside>
-	<Profile />
-	{showRecentPosts && <RecentPosts />}
+  <Profile />
+  {showRecentPosts && <RecentPosts />}
 </aside>
 
 <style>
-	aside {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
+  aside {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 </style>

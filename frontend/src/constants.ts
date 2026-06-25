@@ -1,1 +1,1 @@
-export const author = "Ryo Sakaguchi"
+export const author = "Ryo Sakaguchi";

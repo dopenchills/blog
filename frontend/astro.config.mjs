@@ -1,9 +1,9 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog.ryo-sakaguchi.com',
-  integrations: [sitemap()]
+  site: "https://blog.ryo-sakaguchi.com",
+  integrations: [sitemap()],
 });

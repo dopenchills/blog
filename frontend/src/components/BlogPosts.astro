@@ -1,8 +1,8 @@
 ---
-import { getBlogPosts } from './BlogPosts';
+import { getBlogPosts } from "./BlogPosts";
 
 interface Props {
-	limit?: number
+  limit?: number;
 }
 
 const { limit } = Astro.props;
@@ -11,10 +11,16 @@ const posts = await getBlogPosts(limit);
 ---
 
 <div style="display: grid; row-gap: 1rem;">
-	{posts.map((post) => (
-		<div>
-			<a href={`/blog/${post.id}`}>{post.data.title}</a>
-			<div style="font-size: small">{new Intl.DateTimeFormat('ja-JP', { dateStyle: 'long' }).format(post.data.pubDate)}</div>
-		</div>
-	))}
+  {
+    posts.map((post) => (
+      <div>
+        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        <div style="font-size: small">
+          {new Intl.DateTimeFormat("ja-JP", { dateStyle: "long" }).format(
+            post.data.pubDate,
+          )}
+        </div>
+      </div>
+    ))
+  }
 </div>

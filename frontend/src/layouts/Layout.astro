@@ -1,77 +1,80 @@
 ---
-import Head from './components/Head.astro';
-import Header from './components/Header.astro';
-import Sidebar from './components/Sidebar/Sidebar.astro';
+import Head from "./components/Head.astro";
+import Header from "./components/Header.astro";
+import Sidebar from "./components/Sidebar/Sidebar.astro";
 
 interface Props {
-	title?: string;
-	showRecentPosts?: boolean;
+  title?: string;
+  showRecentPosts?: boolean;
 }
 
-const { title = 'Blog', showRecentPosts = false } = Astro.props;
+const { title = "Blog", showRecentPosts = false } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja">
-	<Head title={title} />
-	<body>
-		<div class="layout">
-			<div class="site-header">
-				<Header />
-			</div>
-			<main class="content">
-				<slot />
-			</main>
-			<div class="sidebar-spacer" aria-hidden="true"></div>
-			<div class="sidebar">
-				<Sidebar showRecentPosts={showRecentPosts} />
-			</div>
-		</div>
-	</body>
+  <Head title={title} />
+  <body>
+    <div class="layout">
+      <div class="site-header">
+        <Header />
+      </div>
+      <main class="content">
+        <slot />
+      </main>
+      <div class="sidebar-spacer" aria-hidden="true"></div>
+      <div class="sidebar">
+        <Sidebar showRecentPosts={showRecentPosts} />
+      </div>
+    </div>
+  </body>
 </html>
 
 <style>
-	.layout {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr);
-		grid-template-rows: auto auto 2rem auto;
-		grid-template-areas:
-			'header'
-			'content'
-			'spacer'
-			'sidebar';
-		row-gap: 1rem;
-		margin: 0.5rem 0.5rem 2rem 0.5rem;
-	}
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 2rem auto;
+    grid-template-areas:
+      "header"
+      "content"
+      "spacer"
+      "sidebar";
+    row-gap: 1rem;
+    margin: 0.5rem 0.5rem 2rem 0.5rem;
+  }
 
-	.site-header {
-		grid-area: header;
-	}
+  .site-header {
+    grid-area: header;
+  }
 
-	.content {
-		grid-area: content;
-	}
+  .content {
+    grid-area: content;
+  }
 
-	.sidebar-spacer {
-		grid-area: spacer;
-	}
+  .sidebar-spacer {
+    grid-area: spacer;
+  }
 
-	.sidebar {
-		grid-area: sidebar;
-	}
+  .sidebar {
+    grid-area: sidebar;
+  }
 
-	@media (min-width: 64rem) {
-		.layout {
-			grid-template-columns: minmax(0, 1fr) minmax(0, 42rem) 16rem minmax(0, 1fr);
-			grid-template-rows: auto auto;
-			grid-template-areas:
-				'. header . .'
-				'. content sidebar .';
-			gap: 1rem 2rem;
-		}
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 42rem) 16rem minmax(
+          0,
+          1fr
+        );
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        ". header . ."
+        ". content sidebar .";
+      gap: 1rem 2rem;
+    }
 
-		.sidebar-spacer {
-			display: none;
-		}
-	}
+    .sidebar-spacer {
+      display: none;
+    }
+  }
 </style>

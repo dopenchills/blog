@@ -1,10 +1,16 @@
 ---
-import { Image } from 'astro:assets';
-import icon from '../../assets/icon.png';
+import { Image } from "astro:assets";
+import icon from "../../assets/icon.png";
 ---
 
 <header>
-	<a href="/">
-		<Image src={icon} alt="Blog" width={48} loading="eager" fetchpriority="high" />
-	</a>
+  <a href="/">
+    <Image
+      src={icon}
+      alt="Blog"
+      width={48}
+      loading="eager"
+      fetchpriority="high"
+    />
+  </a>
 </header>

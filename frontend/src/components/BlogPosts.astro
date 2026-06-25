@@ -14,7 +14,7 @@ const posts = await getBlogPosts(limit);
 	{posts.map((post) => (
 		<div>
 			<a href={`/blog/${post.id}`}>{post.data.title}</a>
-			<div>{new Intl.DateTimeFormat('ja-JP', { dateStyle: 'long' }).format(post.data.pubDate)}</div>
+			<div style="font-size: small">{new Intl.DateTimeFormat('ja-JP', { dateStyle: 'long' }).format(post.data.pubDate)}</div>
 		</div>
 	))}
 </div>

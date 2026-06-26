@@ -22,7 +22,7 @@ tags: ["software"]
 
 リポジトリごとに設定画面をいくつも注意深くレビューし、設定の誤りがないかを確認する必要がある。
 
-![github-settings](./monorepo-over-polyrepo/github-settings.png)
+![github-settings](./2026-06-23-monorepo-over-polyrepo/github-settings.png)
 
 モノレポならこれらが一箇所で済む。
 

@@ -11,7 +11,6 @@
 SEO / 分析の実験
 
 - Google Analyticsの導入
-- Azure Application Insightsの導入
 
 コスト
 

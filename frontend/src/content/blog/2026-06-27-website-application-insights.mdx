@@ -1,0 +1,111 @@
+---
+title: WebサイトにApplication Insightsを適用した
+pubDate: "2026-06-27"
+tags: ["software"]
+---
+
+このブログにブラウザ側のApplication Insights JavaScript SDKを適用した。
+
+Application Insightsで`browserTimings`と`pageViews`というテーブルにデータが入るようになった。
+また、これらのデータをもとに分析もできるようになった。
+
+ここではそれぞれのテーブルの中身や、これらのデータでできる分析について見ていく。
+
+## browserTimingsテーブル
+
+Azure Portalの監視タブからログを選択すると、`browserTimings`テーブルや`pageViews`テーブルなどを閲覧できる。
+
+`browserTimings`テーブルでは、ページが要求されてからロードされるまでの工程で、どこがボトルネックになっているかを調査できる。
+
+![browser-timings](./2026-06-27-website-application-insights/browser-timings.png)
+
+注目すべき項目は以下:
+
+- networkDuration: ページが要求されてから接続が確立されるまでの時間
+- sendDuration: 接続が確立されてからレスポンスの最初のバイトが返ってくるまでの時間
+- receiveDuration: 最初のバイトが返ってきてから最後のバイトが返ってくるまでの時間
+- processingDuration: 最後のバイトが返ってきてからDOMがロードされるまでの時間
+
+そして、上記の項目を合計した時間もわかる:
+
+- totalDuration: ページが要求されてからロードされるまでにかかった全体の時間
+
+メトリクスタブからもこれらの指標を視覚的に閲覧できる。
+
+![browser-timings-metrics](./2026-06-27-website-application-insights/browser-timings-metrics.png)
+
+
+## pageViewsテーブル
+
+`pageViews`テーブルにはページが表示されるたびに新しいレコードが作られる。
+
+![page-views](./2026-06-27-website-application-insights/page-views.png)
+
+
+## ユーザー
+
+使用状況タブからユーザーをクリックすると、ユーザーの情報が見られる。
+
+このブログには認証がないので、匿名ユーザーの情報が見られる。
+
+![user](./2026-06-27-website-application-insights/user.png)
+
+匿名ユーザーは、異なるデバイス・ブラウザなどでサイトを開くと生成される。そのIDはクッキーとして保存される。
+
+![user-session](./2026-06-27-website-application-insights/user-session.png)
+
+
+## セッション
+
+セッションを閲覧できる。セッションとは、ユーザーの活動を示したものだといえる。
+
+同じサイトを表示し続けていても、30分以上動きがないと新しいセッションになる。また24時間以上使い続けていた場合も新しいセッションとなる。
+
+![session](./2026-06-27-website-application-insights/session.png)
+
+セッションIDは匿名ユーザーIDと同様にクッキーとして管理されている。
+
+## イベント
+
+イベントではページビューを含むイベントの数を閲覧できる。
+
+このブログではカスタムイベントを定義していないし、サーバーへのリクエストもしていないので、得られる洞察はページビューと変わらない。
+
+![event](./2026-06-27-website-application-insights/event.png)
+
+
+## ファネル
+
+ファネルでは、ユーザーが、狙った通りの行動をどれくらい取ってくれたのかが分かる。
+
+最初にステップを決める。例えばこのブログのトップページを開いたのち、「モノレポのすすめ」という記事を読むという行動パターンを設定する。
+
+![funnel-edit](./2026-06-27-website-application-insights/funnel-edit.png)
+
+ページ遷移やカスタムイベントなどをステップとして定義できる。
+
+ビューをクリックすると結果を見られる。トップページから「モノレポのすすめ」を読んだ人の割合は66%だということが分かる。
+
+![funnel-view](./2026-06-27-website-application-insights/funnel-view.png)
+
+
+## ユーザーフロー
+
+ユーザーフローでは、ユーザーの行動を可視化できる。
+
+まずは起点を決める。起点はページビュー、カスタムイベント、例外などから選べる。
+
+ここでは「モノレポのすすめ」というページビューを起点にする。すると、前後に起きたイベントが分かる。
+
+![user-flow](./2026-06-27-website-application-insights/user-flow.png)
+
+
+# 参考
+
+[Application Insights telemetry data model - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-monitor/app/data-model-complete)
+
+[Usage analysis with Application Insights - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-monitor/app/usage?tabs=users)
+
+[Supported metrics - microsoft.insights/components - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-insights-components-metrics#category-browser)
+
+[Metrics in Application Insights - Azure Monitor - Azure Monitor | Azure Docs](https://docs.azure.cn/en-us/azure-monitor/app/metrics-overview?tabs=standard#browser-metrics)

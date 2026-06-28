@@ -31,7 +31,6 @@ Azure Portalの監視タブからログタブを選択すると、`browserTiming
 
 ![browser-timings-metrics](./2026-06-27-website-application-insights/browser-timings-metrics.png)
 
-
 ## pageViewsテーブル
 
 `pageViews`テーブルにはページが表示されるたびに新しいレコードが作られる。
@@ -39,6 +38,20 @@ Azure Portalの監視タブからログタブを選択すると、`browserTiming
 SPA内でのページ遷移や、画面内のタブでの表示切り替えなどもページビューとして扱うことができる。
 
 ![page-views](./2026-06-27-website-application-insights/page-views.png)
+
+## その他のテーブル
+
+ここでは細かく触れないが、その他のテーブルにもレコードが追加される。
+
+例外が出たらexceptionsテーブルにレコードが追加される。
+
+サーバーに通信したらdependenciesテーブルにレコードが追加される。
+
+カスタムイベントを定義して、customEventsテーブルで表示させることもできる。
+
+イメージを掴むのに以下のページが参考になった。
+
+[Application Insights telemetry data model - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-monitor/app/data-model-complete)
 
 
 ## ユーザー

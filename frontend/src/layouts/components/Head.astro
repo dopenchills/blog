@@ -1,6 +1,4 @@
 ---
-import HeadAppi from "./HeadAppi.astro";
-
 interface Props {
   title?: string;
 }
@@ -17,5 +15,4 @@ const { title = "Blog" } = Astro.props;
   <meta name="generator" content={Astro.generator} />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <title>{title}</title>
-  <HeadAppi />
 </head>

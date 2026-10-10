@@ -1,9 +1,9 @@
-import { appInsights } from "../../../modules/ApplicationInsights";
+import { trackEvent } from "../../../modules/ApplicationInsights";
 
 const link = document.querySelector<HTMLAnchorElement>("#buy-me-a-coffee-link");
 
 link?.addEventListener("click", () => {
-  appInsights?.trackEvent(
+  trackEvent(
     { name: "BuyMeACoffeeClicked" },
     {
       destination: link.href,

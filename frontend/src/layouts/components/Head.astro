@@ -1,9 +1,15 @@
 ---
+import "../../styles/global.css";
+
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "Blog" } = Astro.props;
+const {
+  title = "Blog",
+  description = "Ryo Sakaguchiのブログ。ソフトウェア開発の工夫や技術の学び、日々考えたことを紹介します。",
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -12,7 +18,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="/styles/global.css" />
+  <meta name="description" content={description} />
   <meta name="generator" content={Astro.generator} />
   <link rel="canonical" href={canonicalURL.href} />
   <link rel="sitemap" href="/sitemap-index.xml" />

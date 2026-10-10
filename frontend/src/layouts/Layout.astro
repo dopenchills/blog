@@ -5,15 +5,16 @@ import Sidebar from "./components/Sidebar/Sidebar.astro";
 
 interface Props {
   title?: string;
+  description?: string;
   showRecentPosts?: boolean;
 }
 
-const { title = "Blog", showRecentPosts = false } = Astro.props;
+const { title = "Blog", description, showRecentPosts = false } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja">
-  <Head title={title} />
+  <Head title={title} description={description} />
   <body>
     <div class="layout">
       <div class="site-header">
@@ -28,7 +29,9 @@ const { title = "Blog", showRecentPosts = false } = Astro.props;
       </div>
     </div>
     <script>
-      import "../modules/ApplicationInsights";
+      import { scheduleApplicationInsights } from "../modules/ApplicationInsights";
+
+      scheduleApplicationInsights();
     </script>
   </body>
 </html>

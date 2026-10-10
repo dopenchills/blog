@@ -8,5 +8,6 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: "https://blog.ryo-sakaguchi.com",
   trailingSlash: "always",
+  build: { inlineStylesheets: "always" },
   integrations: [sitemap(), mdx()],
 });

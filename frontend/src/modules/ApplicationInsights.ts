@@ -7,6 +7,8 @@ export const appInsights = connectionString
   ? new ApplicationInsights({
       config: {
         connectionString,
+        // Keep pagehide/visibilitychange flushing without the deprecated unload event.
+        disablePageUnloadEvents: ["unload"],
       },
     })
   : undefined;

@@ -7,5 +7,6 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.ryo-sakaguchi.com",
+  trailingSlash: "always",
   integrations: [sitemap(), mdx()],
 });
